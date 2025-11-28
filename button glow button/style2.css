@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0e2136;
+}
+
+.box {
+    background-color: #092d58;
+    height: 200px;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    position: relative;
+    z-index: -2;
+}
+
+@property --deg {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+}
+
+.box::before,
+.box::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    /* acts like padding for border glow */
+    border-radius: inherit;
+    background: conic-gradient(from var(--deg) at center,
+            #00c3ff,
+            #4d0199,
+            #6300c6,
+            #00c3ff);
+    z-index: -2;
+    animation: autoRotate 2s linear infinite;
+}
+
+.box::after {
+    filter: blur(10px);
+}
+
+@keyframes autoRotate {
+    to {
+        --deg: 360deg;
+    }
+}

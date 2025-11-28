@@ -1,0 +1,50 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0e2136;
+}
+.box{
+    background-color: #092d58;
+    height: 200px;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    position: relative;
+}
+@property --deg{
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+}
+.box::before,
+.box::after{
+    content: "";
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    background:conic-gradient(
+        from var(--deg) at center,
+        #00c3ff,
+        #4d0199,
+        #6300c6,
+        #00c3ff
+
+   );
+   border-radius: inherit;
+   z-index:-2;
+   padding: 2px;
+   animation: autoRotate 2s linear infinite;
+
+}
+.box::after{
+    filter: blur(10px);
+}
+@keyframes autoRotate{
+    to{
+        --deg:360deg;
+    }
+
+}
